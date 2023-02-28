@@ -31,20 +31,20 @@
 
 
 <br>
-    <form action="#" onsubmit="Aftersubmit()">
+    <form  action="#" onsubmit="saveToLocalStorage(event)">
     
         <br>
         <label>Name</label>
         <br>
-        <input type="text" id="name" >
+        <input type="text" name="username" id="name" >
         <br>
         <label>Email</label>
         <br>
-        <input type="email" id="email">
+        <input type="email" name="emailid" id="email">
         <br>
         <label>Phone</label>
         <br>
-        <input type="number" id="number">
+        <input type="number" name="phonenumber" id="number">
         <br>
         <label>Time For Call</label>
         <br>
@@ -52,22 +52,28 @@
         <br><br>
         <input type="submit" value="Get a Call">
 
+        <h2>Users Info</h2>
+
 
     
     </form>
+    <ul id='listofitems'></ul>
+
     <script>
-        function Aftersubmit(){
-            var username= document.getElementById('name').value;
-            var useremail= document.getElementById('email').value;
-            var usernumber= document.getElementById('number').value;
-            var datetime= document.getElementById('datetime').value;
+        function saveToLocalStorage(event){
+            event.preventDefault();
+          const name = event.target.username.value;
+          const email = event.target.emailid.value;
+          const phonenumber = event.target.phonenumber.value;
 
 
 
-			var userList = JSON.parse(localStorage.getItem("users")) || [];
-            userList.push({name: username, email: useremail, phone: usernumber,Time: datetime});
 
-            localStorage.setItem("users", JSON.stringify(userList));
+
+			// var userList = JSON.parse(localStorage.getItem("users")) || [];
+            // userList.push({name: username, email: useremail, phone: usernumber,Time: datetime});
+
+            // localStorage.setItem(username, JSON.stringify(userList));
 
 
         //    var user=localStorage.setItem("uname",username);
@@ -75,8 +81,26 @@
         //    var number= localStorage.setItem("number",usernumber);
         //    var number= localStorage.setItem("Date",datetime);
 
+        const obj = {
+            name,
+            email,
+            phonenumber
+        }
+         localStorage.setItem(obj.name, JSON.stringify(obj))
+    }
 
-}
+
+        function showuseronscreen(userList){
+
+            const parentElement=document.getElementById('listofitems')
+            const childElement=document.createElement('li')
+            childElement.textContent= obj.name + ' - ' +obj.email
+            parentElement.appendChild(childElement)
+        }
+
+
+
+
             
 
         
