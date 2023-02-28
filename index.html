@@ -113,6 +113,23 @@
             }
             childElement.append(deleteButton)
             parentElement.appendChild(childElement)
+            const editButton=document.createElement('input')
+            editButton.type="button"
+            editButton.value="Delete"
+            editButton.onclick=()=>{
+                localStorage.removeItem(obj.email)
+                parentElement.removeChild(childElement)
+                document.getElementById('usernameInputTag').value=obj.name
+                document.getElementById('emailInputTag').value=obj.name
+                document.getElementById('phonenumberInputTag').value=obj.name
+
+
+            }
+            childElement.append(deleteButton)
+            childElement.append(editButton)
+
+            parentElement.appendChild(childElement)
+
         }
 
 
