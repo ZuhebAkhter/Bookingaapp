@@ -7,7 +7,6 @@
     <title>www.zuheb.com</title>
     <style>
         body{
-            background-image: url(https://images.freecreatives.com/wp-content/uploads/2016/04/Blurred-Web-Backgrounds-HD-Wallpaper.jpg);
         }
         input{
             font-size: 35px;
@@ -31,7 +30,8 @@
 
 
 <br>
-    <form  action="#" onsubmit="saveToLocalStorage(event)">
+    <form  action="#" onsubmit="saveToLocalStorage(event),showuseronscreen(obj)">
+
     
         <br>
         <label>Name</label>
@@ -52,7 +52,6 @@
         <br><br>
         <input type="submit" value="Get a Call">
 
-        <h2>Users Info</h2>
 
 
     
@@ -65,6 +64,12 @@
           const name = event.target.username.value;
           const email = event.target.emailid.value;
           const phonenumber = event.target.phonenumber.value;
+
+        //   const userDetails = document.createElement('div');
+        // userDetails.innerHTML = `
+        //   <li><strong>Name:</strong> ${name},<strong>Email:</strong> ${email},<Number:</strong> ${phonenumber}</li>
+        // `;
+        // document.body.appendChild(userDetails);
 
 
 
@@ -90,11 +95,23 @@
     }
 
 
-        function showuseronscreen(userList){
+        function showuseronscreen(obj){
 
             const parentElement=document.getElementById('listofitems')
             const childElement=document.createElement('li')
             childElement.textContent= obj.name + ' - ' +obj.email
+            parentElement.appendChild(childElement)
+               
+
+
+            const deleteButton=document.createElement('input')
+            deleteButton.type="button"
+            deleteButton.value="Delete"
+            deleteButton.onclick=()=>{
+                localStorage.removeItem(obj.email)
+                parentElement.removeChild(childElement)
+            }
+            childElement.append(deleteButton)
             parentElement.appendChild(childElement)
         }
 
