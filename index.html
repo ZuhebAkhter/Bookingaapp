@@ -64,11 +64,16 @@
 
 
 
+			var userList = JSON.parse(localStorage.getItem("users")) || [];
+            userList.push({name: username, email: useremail, phone: usernumber,Time: datetime});
 
-           var user=localStorage.setItem("uname",username);
-           var email= localStorage.setItem("email",useremail);
-           var number= localStorage.setItem("number",usernumber);
-           var number= localStorage.setItem("Date",datetime);
+            localStorage.setItem("users", JSON.stringify(userList));
+
+
+        //    var user=localStorage.setItem("uname",username);
+        //    var email= localStorage.setItem("email",useremail);
+        //    var number= localStorage.setItem("number",usernumber);
+        //    var number= localStorage.setItem("Date",datetime);
 
 
 }
